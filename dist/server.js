@@ -75,7 +75,7 @@ var ContatosFavoritosController = class {
           nome_contato,
           tipo_chave_pix,
           chave_pix,
-          cooperado_id,
+          cooperado_id: 1,
           lista_de_chaves
         }
       });
@@ -187,12 +187,13 @@ var CooperadosController = class {
       res.status(500).json({ error: "Erro interno do servidor" });
     }
   }
+
   async post(req, res) {
-    const { cooperativa_id, conta_corrente, nome } = req.body;
+    const {  conta_corrente, nome } = req.body;
     try {
       await prisma4.cooperados.create({
         data: {
-          cooperativa_id,
+          cooperativa_id: "1",
           conta_corrente,
           nome
         }
@@ -203,6 +204,7 @@ var CooperadosController = class {
       res.status(500).json({ error: "Erro interno do servidor" });
     }
   }
+
   async update(req, res) {
     const { cooperativa_id, conta_corrente, nome } = req.body;
     const id = parseInt(req.params.id, 10);

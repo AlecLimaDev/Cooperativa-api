@@ -112,10 +112,11 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
+    "dev": "tsc src/server.ts",
     "test": "server.js",
-    "start": "node dist/sever.js",
+    "start": "node dist/server.js",
     "build": "tsup src",
-    "vercel-build": "npx pisma migrate deploy"
+    "vercel-build": "npx prisma migrate deploy"
   },
   "author": "",
   "license": "ISC",

@@ -4,19 +4,20 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:YOUR_PASSWORD@localhost:5432"
 }
 
 model ContatoFavorito {
-  id              Int    @id @default(autoincrement())
+  id              Int     @id @default(autoincrement())
   nome_contato    String
   tipo_chave_pix  String
   chave_pix       String
-  cooperado_id    Int
+  cooperado_id    Int     @default(dbgenerated("nextval('contatos_favoritos_cooperado_id_seq'::regclass)"))
   lista_de_chaves String
 
   @@map("contatos_favoritos")
 }
+
 
 model Cooperados {
   id             Int    @id @default(autoincrement())

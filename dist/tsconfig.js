@@ -1,6 +1,9 @@
 // src/tsconfig.json
 var compilerOptions = {
-  target: "es2016",
+  paths: {
+    "@prisma/client": ["node_modules/@prisma/client"]
+  },
+  target: "es2020",
   lib: [],
   module: "commonjs",
   rootDir: "./",
