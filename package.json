@@ -2,6 +2,9 @@
   "name": "cooperativa-api",
   "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": "21.2.0"
+  },
   "dependencies": {
     "@prisma/client": "^5.8.1",
     "abbrev": "^1.1.1",
