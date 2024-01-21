@@ -128,7 +128,7 @@
     "@types/swagger-ui-express": "^4.1.6",
     "nodemon": "^3.0.1",
     "prisma": "^5.8.1",
-    "tsup": "^7.3.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.2.2"
   },
   "description": ""
