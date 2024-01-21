@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ContatoFavorito {
+  id              Int    @id @default(autoincrement())
+  nome_contato    String
+  tipo_chave_pix  String
+  chave_pix       String
+  cooperado_id    Int
+  lista_de_chaves String
+
+  @@map("contatos_favoritos")
+}
+
+model Cooperados {
+  id             Int    @id @default(autoincrement())
+  nome           String
+  conta_corrente String
+  cooperativa_id String
+
+  @@map("cooperados")
+}
+
+model Cooperativas {
+  id        Int    @id @default(autoincrement())
+  descricao String
+  codigos   String
+
+  @@map("cooperativas")
+}
