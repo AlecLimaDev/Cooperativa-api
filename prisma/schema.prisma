@@ -12,7 +12,7 @@ model ContatoFavorito {
   nome_contato    String
   tipo_chave_pix  String
   chave_pix       String
-  cooperado_id    Int     @default(dbgenerated("nextval('contatos_favoritos_cooperado_id_seq'::regclass)"))
+  cooperado_id    Int     @default(autoincrement())
   lista_de_chaves String
 
   @@map("contatos_favoritos")
