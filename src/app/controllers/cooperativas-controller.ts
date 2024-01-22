@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 class CooperativasController {
   async get(req: Request, res: Response) {

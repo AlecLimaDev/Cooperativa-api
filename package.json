@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "engines": {
-    "node": "21.2.0"
+    "node": "18.19.0"
   },
   "dependencies": {
     "@prisma/client": "^5.8.1",
@@ -115,6 +115,7 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
+    "generate": "npx prisma generate",
     "dev": "tsc src/server.ts",
     "test": "server.js",
     "start": "node dist/server.js",

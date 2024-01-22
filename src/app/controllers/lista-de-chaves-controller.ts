@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { PrismaClient } from "@prisma/client" 
+import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 class ListaDeChavesController {
   async get(req: Request, res: Response) {
