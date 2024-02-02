@@ -6,9 +6,7 @@ import ListaDeChavesController from "./app/controllers/lista-de-chaves-controlle
 import ContatosFavoritosController from "./app/controllers/contatos-favoritos-controller";
 import CooperativasController from "./app/controllers/cooperativas-controller";
 import CooperadosController from "./app/controllers/cooperados-controller";
-import { Request, Response } from "express"; 
-
-
+import { Request, Response } from "express";
 
 const app = express();
 app.use(cors());
@@ -44,8 +42,9 @@ app.put("/cooperados/:id", CooperadosController.update);
 
 app.delete("/cooperados/:id", CooperadosController.delete);
 
-app.listen(2000, () => console.log("Rodando"))
+const PORT = process.env.PORT || 5432;
 
+app.listen(PORT, () => console.log("Rodando"));
 
 https
   .createServer(
@@ -55,4 +54,4 @@ https
     },
     app
   )
-  .listen(2001, () => console.log("API HTTPS RODANDO"));
+  .listen(PORT, () => console.log("API HTTPS RODANDO"));
