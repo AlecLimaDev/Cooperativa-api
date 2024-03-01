@@ -116,8 +116,7 @@
     "dev": "tsc src/server.ts",
     "test": "server.js",
     "start": "node dist/server.js",
-    "build": "tsup src",
-    "vercel-build": "npx prisma migrate deploy"
+    "build": "tsup src"
   },
   "author": "",
   "license": "ISC",
