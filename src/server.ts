@@ -12,7 +12,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World");
 });
 
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 5434;
 
 app.listen(PORT, () => console.log("Rodando"));
 
