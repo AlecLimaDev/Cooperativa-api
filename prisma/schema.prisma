@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:YOUR_PASSWORD@localhost:5432/cooperativa-api"
+  url      = env("DATABASE_URL")
 }
 
 model ContatoFavorito {
