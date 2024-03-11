@@ -1,11 +1,19 @@
-import fastify, { FastifyReply, FastifyRequest } from "fastify";
-import { Prisma, PrismaClient } from "@prisma/client";
+import fastify, { FastifyReply, FastifyRequest, FastifyInstance } from 'fastify';
+import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
+import fastifyCors from '@fastify/cors';
 
-import { z } from "zod";
-
-const app = fastify();
-
+const app: FastifyInstance = fastify();
 const prisma = new PrismaClient();
+
+const corsOptions = {
+  origin: 'http://localhost:5173'
+};
+
+app.register(fastifyCors, {
+  origin: corsOptions.origin,
+});
+
 
 app.get("/contatos-favoritos", async () => {
   const contatosFavoritos = await prisma.contatoFavorito.findMany();
@@ -71,9 +79,7 @@ app.put("/contatos-favoritos/:id", async (request, reply) => {
   return reply.status(201).send();
 });
 
-app.delete(
-  "/contatos-favoritos/:id",
-  async (request: FastifyRequest, reply: FastifyReply) => {
+app.delete("/contatos-favoritos/:id", async (request: FastifyRequest, reply: FastifyReply) => {
     const params = request.params as { id: string };
     const id = parseInt(params.id, 10);
 
