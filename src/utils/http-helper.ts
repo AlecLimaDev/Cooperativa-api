@@ -24,4 +24,12 @@ const ok = (reply: FastifyReply, data: any) => {
   return reply.code(200).send(data);
 };
 
-export { badRequest, unauthorized, serverError, noContent, created, ok };
+const updated = (reply: FastifyReply, data: any) => {
+  return reply.code(201).send(data);
+};
+
+const deleted = (reply: FastifyReply, data: any) => {
+  return reply.code(201).send(data);
+};
+
+export { badRequest, unauthorized, serverError, noContent, created, ok, updated, deleted };

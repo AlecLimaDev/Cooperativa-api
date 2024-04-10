@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,30 +8,119 @@ datasource db {
 }
 
 model ContatoFavorito {
-  id              Int     @id @default(autoincrement())
-  nome_contato    String
-  tipo_chave_pix  String
-  chave_pix       String
-  cooperado_id    Int     @default(autoincrement())
-  lista_de_chaves String
+  id             String    @id @default(cuid())
+  nome_contato   String
+  tipo_chave_pix String
+  chave_pix      String
 
-  @@map("contatos_favoritos")
+  @@map("contato_favorito")
 }
 
-
 model Cooperados {
-  id             Int    @id @default(autoincrement())
+  id             String    @id @default(cuid())
   nome           String
   conta_corrente String
-  cooperativa_id String
 
   @@map("cooperados")
 }
 
-model Cooperativas {
-  id        Int    @id @default(autoincrement())
-  descricao String
-  codigos   String
+
+model Bancos {
+   id         String    @id @default(cuid())
+   cnpj       String 
+   nome_constituicao String
+   segmento   String
+   endereco   String
+   complemento String
+   bairro     String
+   cep        String
+   municipio  String
+   uf         String
+   ddd        String
+   fone       String
+   cart_comercial   String
+   email      String
+   municipio_ibge   String
+  site_na_internet  String
+  
+  @@map("bancos")
+}
+
+model User {
+  id String @id @default(cuid())
+  name String
+  email String
+
+  @@map("user")
+}
+
+model Cooperativas { 
+  id String @id @default(cuid())
+  cnpj                String
+  nome_da_instituicao String
+  endereco            String
+  complemento         String  
+  bairro              String
+  cep                 String    
+  municipio           String
+  uf                  String
+  ddd                 String
+  telefone            String
+  classe              String
+  criterio_de_associacao String
+  categ_coop_sing     String
+  filiacao            String
+  email               String
+  site_da_cooperativa String
 
   @@map("cooperativas")
 }
+
+model Sociedades {
+  id        String @id @default(cuid())
+  cnpj     String
+  segmento String
+  endereco String
+  complemento String
+  bairro   String
+  cep      String
+  cidade   String
+  uf       String
+  ddd      String
+  fone     String
+  email    String
+  String String
+  municipio_ibge String
+
+  @@map("sociedades")
+}
+
+model Consorcios {
+  id        String @id @default(cuid())
+  cnpj                String
+  nome_da_instituicao String
+  endereco            String
+  complemento         String
+  bairro              String
+  cep                 String
+  municipio           String
+  uf                  String
+  email               String
+  municipio_ibge      String
+  
+  @@map("consorcios")
+}
+
+model Conglomerado {
+  id        String @id @default(cuid())
+  nome_do_conglomerado    String
+  classe_do_conglomerado  String
+  cnpj_participante       String
+  nome_do_participante    String
+  tipo_participacao       String
+  data_inicio            DateTime
+  uf                      String
+
+  @@map("conglomerado")
+}
+
