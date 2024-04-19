@@ -23,7 +23,14 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          export HOSTINGER_HOST="${{ secrets.REMOTE_HOST }}"
+          export HOSTINGER_USER="${{ secrets.REMOTE_USER }}"
+          export HOSTINGER_PORT="${{ secrets.REMOTE_PORT }}"
+          export HOSTINGER_TARGET="${{ secrets.REMOTE_TARGET }}"
+          # Executar o build
+          npm run build
+
 
   deploy:
     name: Deploy to Production
@@ -44,4 +51,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          TARGET: ${{ secrets.REMOTE_TARGET }} 
+          TARGET: ${{ secrets.REMOTE_TARGET }}
