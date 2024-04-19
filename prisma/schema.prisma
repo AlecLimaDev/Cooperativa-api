@@ -7,28 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ContatoFavorito {
-  id             String    @id @default(cuid())
-  nome_contato   String
-  tipo_chave_pix String
-  chave_pix      String
-
-  @@map("contato_favorito")
-}
-
-model Cooperados {
-  id             String    @id @default(cuid())
-  nome           String
-  conta_corrente String
-
-  @@map("cooperados")
-}
 
 
-model Bancos {
+model Banco {
    id         String    @id @default(cuid())
    cnpj       String 
-   nome_constituicao String
+   nome_instituicao String
    segmento   String
    endereco   String
    complemento String
@@ -42,19 +26,11 @@ model Bancos {
    email      String
    municipio_ibge   String
   site_na_internet  String
-  
-  @@map("bancos")
 }
 
-model User {
-  id String @id @default(cuid())
-  name String
-  email String
 
-  @@map("user")
-}
 
-model Cooperativas { 
+model Cooperativa { 
   id String @id @default(cuid())
   cnpj                String
   nome_da_instituicao String
@@ -72,11 +48,9 @@ model Cooperativas {
   filiacao            String
   email               String
   site_da_cooperativa String
-
-  @@map("cooperativas")
 }
 
-model Sociedades {
+model Sociedade {
   id        String @id @default(cuid())
   cnpj     String
   segmento String
@@ -89,13 +63,10 @@ model Sociedades {
   ddd      String
   fone     String
   email    String
-  String String
   municipio_ibge String
-
-  @@map("sociedades")
 }
 
-model Consorcios {
+model Consorcio {
   id        String @id @default(cuid())
   cnpj                String
   nome_da_instituicao String
@@ -107,9 +78,8 @@ model Consorcios {
   uf                  String
   email               String
   municipio_ibge      String
-  
-  @@map("consorcios")
 }
+
 
 model Conglomerado {
   id        String @id @default(cuid())
@@ -120,7 +90,27 @@ model Conglomerado {
   tipo_participacao       String
   data_inicio            DateTime
   uf                      String
-
-  @@map("conglomerado")
 }
 
+model CompeIspb {
+  id    String @id @default(cuid())
+  compe String
+  ispb  String
+  documento String
+  nome_longo String
+  nome_curto String
+  network    String
+  tipo       String
+  tipo_pix   String
+  charge     String
+  documento_credito String
+  cheque_legal      String
+  detecta_flow      String
+  portabilidade_salario String
+  produtos              String
+  url                   String
+  operacao_iniciada     String
+  data_pix_iniciada     String
+  data_registrada       String
+  data_atualizada       String  
+}
