@@ -1,38 +1,50 @@
-name: api.numerodosbancos.com deployment
+name: Deployment Pipeline API
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
-        branches: [ main ]
+  push:
+    branches:
+      - main
 
-    workflow_dispatch: 
-
-    
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Build
-              run : echo Building the app
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    deploy-api:
-        runs-on: ubuntu-latest
-        environment: 
-            name: api
-            url: ${{ vars.URL }}
-        needs: build
-        steps:
-            - name: Repo Checkout
-              uses: actions/checkout@v1
-            - name: Hostinger Deploy
-              uses: easingthemes/ssh-deploy@main
-              with:
-                SSH_PRIVATE_KEY: ${{secrets.SERVER_SSH_KEY}}
-                ARGS: "-rlgoDzvc --delete"
-                SOURCE: "dist/"
-                REMOTE_HOST: ${{vars.REMOTE_HOST}}
-                REMOTE_USER: ${{vars.REMOTE_USER}}
-                REMOTE_PORT: ${{vars.REMOTE_PORT}}
-                TARGET: ${{ vars.TARGET }}
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Run Tests
+        run: npm test
+
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SSH Deploy
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rlgoDzvc --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
